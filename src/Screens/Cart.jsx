@@ -8,16 +8,16 @@ import { useSelector } from 'react-redux';
 import { usePostCartMutation } from '../Services/shopServices';
 
 const Cart = () => {
-    //console.log(CartData);
+    
     //const total = CartData.reduce((acumulador, currentItem) => acumulador += currentItem.price * currentItem.quantity, 0)
     
-    const {items: CartData, total, updateAt, user} = useSelector(state => state.cartReducer.value.items)
+    const {items: CartData, total, updateAt, user} = useSelector(state => state.cartReducer.value)
 
-    //const [triggerPostCart, result] = usePostCartMutation()
+    const [triggerPostCart, result] = usePostCartMutation()
 
-    //const onConfirm = () => {
-        //triggerPostCart({items: CartData, total, user, updateAt})
-    //}
+    const onConfirm = () => {
+        triggerPostCart({items: CartData, total, user, updateAt})
+    }
     
     console.log(result)
 
@@ -37,7 +37,7 @@ const Cart = () => {
         />
         <View style={styles.totalContainer}>
             <Pressable
-            
+             onPress = {onConfirm}
             >
                 <Text>
                     Confirm
@@ -48,7 +48,9 @@ const Cart = () => {
         </View>
          <Text style={styles.posPrice} size={30}>Total: ${total}</Text>
     </View>
+    
   )
+
 }
 
 export default Cart
@@ -59,10 +61,11 @@ const styles = StyleSheet.create({
         flex: 1,
         
         backgroundColor:colors.beige,
-        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+        //paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
        
     },
     totalContainer: {
+        backgroundColor:colors.cream,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',

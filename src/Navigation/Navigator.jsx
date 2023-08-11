@@ -27,9 +27,7 @@ const Navigator = () => {
   return (
     <SafeAreaView style = {styles.container}>
         <NavigationContainer >
-            {
-               email ?  
-               <Tab.Navigator 
+             <Tab.Navigator 
                 screenOptions={{
                     headerShown: false,
                     tabBarShowLabel: false,
@@ -63,9 +61,12 @@ const Navigator = () => {
                     }    
                 }}
                 />
-            </Tab.Navigator> :
+            </Tab.Navigator>
+            {/*
+               email ?  
+               :
             <AuthStack/>
-            }
+            */}
            
             
         </NavigationContainer>
