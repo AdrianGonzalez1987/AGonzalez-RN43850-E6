@@ -9,12 +9,10 @@ import { colors } from '../Global/Colors'
 import ShopStack from './ShopStack'
 import CartStack from './CartStack'
 import OrderStack from './OrderStack'
+import MyProfileStack from './MyProfileStack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-
-import { Fontisto } from '@expo/vector-icons'
-import { FontAwesome5 } from '@expo/vector-icons'
-import { MaterialIcons } from '@expo/vector-icons'
-import { Platform } from 'react-native-web'
+import { Fontisto, FontAwesome5, MaterialIcons, Ionicons   } from '@expo/vector-icons'
+import {Platform } from 'react-native-web'
 import AuthStack from './AuthStack'
 import { useSelector } from 'react-redux'
 
@@ -27,6 +25,8 @@ const Navigator = () => {
   return (
     <SafeAreaView style = {styles.container}>
         <NavigationContainer >
+            {
+            email ? 
              <Tab.Navigator 
                 screenOptions={{
                     headerShown: false,
@@ -36,7 +36,7 @@ const Navigator = () => {
             >
                 <Tab.Screen name='Shop' component={ShopStack}
                 options={{
-                    tabBarIcon: ({focused}) => {
+                    TabBarIcon: ({focused}) => {
                         return( 
                         <Fontisto name="shopping-bag-1" size={24} color={focused ? "black" : "grey"} />
                         )
@@ -45,28 +45,39 @@ const Navigator = () => {
                 />
                 <Tab.Screen name='Cart' component={CartStack}
                  options={{
-                    tabBarIcon: ({focused}) => {
+                    TabBarIcon: ({focused}) => {
                         return( 
-                        <FontAwesome5 name="shopping-cart" size={24} color={focused ? "black" : "grey" }/>
+                        <FontAwesome5 name="shopping-cart" size={15} color={focused ? "black" : "grey" }/>
                         ) 
                     }    
                 }}
                 />
                 <Tab.Screen name='Orders' component={OrderStack}
                  options={{
-                    tabBarIcon: ({focused}) => {
+                    TabBarIcon: ({focused}) => {
                         return( 
-                        <MaterialIcons name="add-task" size={24} color={focused ? "black" : "grey" }/>
+                        <MaterialIcons name="add-task" size={15} color={focused ? "black" : "grey" }/>
                         ) 
                     }    
                 }}
                 />
+                 <Tab.Screen
+                        name="MyProfile"
+                        component={MyProfileStack}
+                        options={{
+                            TabBarIcon: ({ focused }) => {
+                                return (
+                                    <View style={styles.item}>
+                                        <Ionicons name="person-circle-outline" size={15} color={focused ? 'black': 'gray' } />      
+                                    </View>
+                                );
+                            },
+                        }}
+                    />
             </Tab.Navigator>
-            {/*
-               email ?  
                :
             <AuthStack/>
-            */}
+            }
            
             
         </NavigationContainer>

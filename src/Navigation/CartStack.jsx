@@ -16,7 +16,9 @@ const CartStack = () => {
                 screenOptions={
                     ({route, navigation}) => (
                         {
-                            header: () => { return <Header route = {route} navigation = {navigation} />},
+                            header: () => { 
+                              return <Header route = {route} navigation = {navigation} />;
+                            },
                         }
                     )
                 }            
