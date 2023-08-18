@@ -19,21 +19,23 @@ const Header = ({ route, navigation }) => {
 
     return (
         <View style={styles.containerHeader}>
-        <Text style={styles.text}>{title}</Text>
+       
         {navigation.canGoBack() ? (
+            
             <Pressable
                 style={styles.pressable}
                 onPress={() => navigation.goBack()}
             >
-                <AntDesign name="back" size={24} color="black" />
+                <AntDesign name="back" size={18} color="black" />
             </Pressable>
         ) : null}
+         <Text style={styles.text}>{title}</Text>
         {email ? (
             <Pressable
                 style={styles.signOut}
                 onPress={() => dispatch(signOut())}
             >
-                <SimpleLineIcons name="logout" size={24} color="black" />
+                <SimpleLineIcons name="logout" size={18} color="black" />
             </Pressable>
         ) : null}
     </View>
@@ -61,6 +63,15 @@ const styles = StyleSheet.create({
         top: "50%",
         backgroundColor: colors.beige,
         borderRadius:15,
+        padding: 6,
        
+    },
+    signOut: {
+        position: "absolute",
+        left: 30,
+        top: "50%",
+        backgroundColor: colors.beige,
+        borderRadius:15,
+        padding: 6,
     },
 });

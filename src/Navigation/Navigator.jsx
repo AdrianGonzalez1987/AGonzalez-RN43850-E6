@@ -36,7 +36,7 @@ const Navigator = () => {
             >
                 <Tab.Screen name='Shop' component={ShopStack}
                 options={{
-                    TabBarIcon: ({focused}) => {
+                    tabBarIcon: ({focused}) => {
                         return( 
                         <Fontisto name="shopping-bag-1" size={24} color={focused ? "black" : "grey"} />
                         )
@@ -45,7 +45,7 @@ const Navigator = () => {
                 />
                 <Tab.Screen name='Cart' component={CartStack}
                  options={{
-                    TabBarIcon: ({focused}) => {
+                    tabBarIcon: ({focused}) => {
                         return( 
                         <FontAwesome5 name="shopping-cart" size={15} color={focused ? "black" : "grey" }/>
                         ) 
@@ -54,7 +54,7 @@ const Navigator = () => {
                 />
                 <Tab.Screen name='Orders' component={OrderStack}
                  options={{
-                    TabBarIcon: ({focused}) => {
+                    tabBarIcon: ({focused}) => {
                         return( 
                         <MaterialIcons name="add-task" size={15} color={focused ? "black" : "grey" }/>
                         ) 
@@ -65,11 +65,11 @@ const Navigator = () => {
                         name="MyProfile"
                         component={MyProfileStack}
                         options={{
-                            TabBarIcon: ({ focused }) => {
+                            tabBarIcon: ({ focused }) => {
                                 return (
-                                    <View style={styles.item}>
+                                   
                                         <Ionicons name="person-circle-outline" size={15} color={focused ? 'black': 'gray' } />      
-                                    </View>
+                                    
                                 );
                             },
                         }}

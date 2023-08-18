@@ -12,6 +12,7 @@ import allProducts from "../Data/products.json";
 import { colors } from "../Global/Colors";
 import { useDispatch } from "react-redux";
 import { addCartItem } from "../Features/Cart/cartSlice";
+import { StatusBar } from 'react-native'
 
 const ItemDetail = ({ 
   navigation,
@@ -81,6 +82,8 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       alignItems: "center",
       padding: 10,
+      height: '90%',
+      paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
       
   },
   mainContainerLandscape: {

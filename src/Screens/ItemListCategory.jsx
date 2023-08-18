@@ -7,7 +7,7 @@ import Search from '../Components/Search'
 import Msn from '../Components/Msn'
 import { useSelector } from 'react-redux'
 import { useGetProductsByCategoryQuery } from '../Services/shopServices'
-
+import { StatusBar } from 'react-native'
 
 const ItemListCategory = ({
   navigation,
@@ -61,12 +61,14 @@ const ItemListCategory = ({
 
   return (
     <View style={styles.container}>
-        <Search
+        <Search 
           onSearch={onSearch}
           
           goBack={()=> navigation.goBack()}
         />
-        <FlatList
+        <View style={styles.container2}>
+        <FlatList  
+            
             data = {products}
             keyExtractor={product => product.id}
             renderItem={({item}) => <ProductItem 
@@ -74,8 +76,9 @@ const ItemListCategory = ({
               navigation={navigation}
             />}
             showsVerticalScrollIndicator={false}
-        />
-        
+            
+    />
+      </View>  
          
 
              <Msn  
@@ -97,10 +100,17 @@ export default ItemListCategory
 
 const styles = StyleSheet.create({
     container: {
-        padding:10,
-        height: '90%',
+        padding:6,
+        height: '100%',
         backgroundColor: colors.beige,
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+    },
+    container2:{
+      padding:10,
+      height: '78%',
+      backgroundColor: colors.beige,
+     
     },
     modalMsbPri: {
       flex: 1,

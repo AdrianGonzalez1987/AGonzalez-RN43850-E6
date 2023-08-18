@@ -7,6 +7,7 @@ export default function App() {
 
   const [fontsLoaded] = useFonts({
     'Josefin': require('./src/Assets/Fonts/Josefin_Sans/JosefinSans-Regular.ttf')
+   
   });
 
   if (!fontsLoaded) {
