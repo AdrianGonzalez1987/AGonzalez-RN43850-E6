@@ -7,6 +7,7 @@ import { useSignInMutation } from "../Services/authServices";
 import { isAtLeastSixCharacters, isValidEmail } from "../Validations/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../Features/User/userSlice";
+import { insertSession } from "../SQLite";
 
 const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
@@ -39,15 +40,37 @@ const LoginScreen = ({ navigation }) => {
     };
 
     console.log(resultSignIn);
+
     useEffect(()=> {
-        if(resultSignIn.isSuccess) {
-            dispatch(setUser({
-                email: resultSignIn.data.email,
-                idToken: resultSignIn.data.idToken,
-                localId: resultSignIn.data.localId,
-                profileImage: ""
-            }))
-        }
+        (async ()=> {
+            try {
+                if(resultSignIn.isSuccess) {
+
+                    //Insert session in SQLite database
+                    console.log('inserting Session');
+                    const response = await insertSession({
+                        idToken: resultSignIn.data.idToken,
+                        localId: resultSignIn.data.localId,
+                        email: resultSignIn.data.email,
+                    })
+                    console.log('Session inserted: ');
+                    console.log(response);
+
+                    dispatch(setUser({
+                        email: resultSignIn.data.email,
+                        idToken: resultSignIn.data.idToken,
+                        localId: resultSignIn.data.localId,
+                        profileImage: "",
+                        location: {
+                            latitude: "",
+                            longitude: "",
+                        }
+                    }))
+                }
+            } catch (error) {
+                console.log(error.message);
+            }
+        })()
     }, [resultSignIn])
 
     return (
@@ -89,7 +112,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: colors.lightPink,
+        backgroundColor: colors.cream,
         gap: 15,
         paddingVertical: 20,
         borderRadius: 10,

@@ -32,7 +32,11 @@ const SignupScreen = ({ navigation }) => {
                     email: result.data.email,
                     idToken: result.data.idToken,
                     localId: resultSignIn.data.localId,
-                    profileImage: ""
+                    profileImage: "",
+                    location: {
+                        latitude: "",
+                        longitude: "",
+                    },
                 })
             )
         }
